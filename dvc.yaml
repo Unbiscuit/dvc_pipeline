@@ -1,0 +1,21 @@
+stages:
+  prepare:
+    cmd: python3 src/data_preprocessing.py
+    deps:
+    - src/data_preprocessing.py
+  train:
+    cmd: python3 src/run_model.py
+    deps:
+    - src/run_model.py
+    params:
+    - train.batch_size
+  evaluate:
+    cmd: python3 src/evaluate.py data/features scores.json plots.json
+    deps:
+    - src/evaluate.py
+    metrics:
+    - scores.json:
+        cache: false
+    plots:
+    - plots.json:
+        cache: false

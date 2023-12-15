@@ -1,0 +1,35 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python3 src/data_preprocessing.py
+    deps:
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: 6800ea2f36d6e1167e6abdad9d5f31ce
+      size: 1564
+  train:
+    cmd: python3 src/run_model.py
+    deps:
+    - path: src/run_model.py
+      hash: md5
+      md5: 1bd5b53fceac4bcf6d0a0e67a7c5bce2
+      size: 1345
+    params:
+      params.yaml:
+        train.batch_size: 8
+  evaluate:
+    cmd: python3 src/evaluate.py data/features scores.json plots.json
+    deps:
+    - path: src/evaluate.py
+      hash: md5
+      md5: 942f275f59ba164b879a82bbfa649ef1
+      size: 730
+    outs:
+    - path: plots.json
+      hash: md5
+      md5: a7ac9c5932d792adf8b0d1ea362c4730
+      size: 101
+    - path: scores.json
+      hash: md5
+      md5: 4cf7d5867f71dc242b97c4eac7497408
+      size: 27
