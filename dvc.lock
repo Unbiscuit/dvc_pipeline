@@ -8,28 +8,29 @@ stages:
       md5: 6800ea2f36d6e1167e6abdad9d5f31ce
       size: 1564
   train:
-    cmd: python3 src/run_model.py
+    cmd: python3 src/run_model.py scores.json
     deps:
     - path: src/run_model.py
       hash: md5
-      md5: 1bd5b53fceac4bcf6d0a0e67a7c5bce2
-      size: 1345
+      md5: 3568dcf6fcc86cfc4dab857e7bbbdcac
+      size: 1579
     params:
       params.yaml:
-        train.batch_size: 8
-  evaluate:
-    cmd: python3 src/evaluate.py data/features scores.json plots.json
-    deps:
-    - path: src/evaluate.py
-      hash: md5
-      md5: 942f275f59ba164b879a82bbfa649ef1
-      size: 730
+        train.batch_size: 24
     outs:
     - path: plots.json
       hash: md5
-      md5: a7ac9c5932d792adf8b0d1ea362c4730
-      size: 101
+      md5: fce7370ccea655c95d66df3eefe85b8e
+      size: 779
+  evaluate:
+    cmd: python3 src/evaluate.py scores.json
+    deps:
+    - path: src/evaluate.py
+      hash: md5
+      md5: 1cb515b7051eafbb089a18200de0575c
+      size: 533
+    outs:
     - path: scores.json
       hash: md5
-      md5: 4cf7d5867f71dc242b97c4eac7497408
+      md5: 02c03b4b1f3ca9542dc802a9f5913a08
       size: 27

@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import yaml
+import yaml, json
 from sklearn.model_selection import train_test_split
 
 df = pd.read_csv('df_after_preprocessing.csv')
@@ -46,5 +46,13 @@ history = model.fit(X_train,
                     callbacks=callbacks_list,
                     batch_size=batch_size,
                     validation_split=0.2)
+
+with open('plots.json', 'w') as f:
+    proc_dict = {'proc': [{
+        'val_acc': accuracy,
+        'epoch': index,
+        } for index, accuracy in enumerate(history.history['val_accuracy'])
+    ]}
+    json.dump(proc_dict, f)
 
 model.save('model.keras')

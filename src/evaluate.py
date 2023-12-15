@@ -16,12 +16,3 @@ results = model.evaluate(X_test, y_test)
 
 with open('scores.json', 'w') as f:
     json.dump({'acc': results[1]}, f)
-
-with open('plots.json', 'w') as f:
-    proc_dict = {'proc': [{
-        'acc': results[1],
-        'precision': results[2],
-        'recall': results[3]
-        }
-    ]}
-    json.dump(proc_dict, f)
