@@ -16,12 +16,12 @@ stages:
       size: 1579
     params:
       params.yaml:
-        train.batch_size: 24
+        train.batch_size: 128
     outs:
     - path: plots.json
       hash: md5
-      md5: fce7370ccea655c95d66df3eefe85b8e
-      size: 779
+      md5: b78638195a49ad2d6f736aa0d6560467
+      size: 597
   evaluate:
     cmd: python3 src/evaluate.py scores.json
     deps:
